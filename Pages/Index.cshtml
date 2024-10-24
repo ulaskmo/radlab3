@@ -1,0 +1,73 @@
+@page
+@model radlab3._0.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Summary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].Publication)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].AuthorID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].PublisherID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].DateOfPublication)
+            </th>
+            <th>
+                Cover Image <!-- Updated the label for clarity -->
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Book) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publication)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuthorID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublisherID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfPublication)
+            </td>
+            <td>
+                <!-- Updated to display the image instead of just the URL -->
+                <img src="@item.CoverPageUrl" alt="@item.Title" style="max-width: 100px;" />
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
